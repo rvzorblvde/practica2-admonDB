@@ -125,5 +125,39 @@ $usuarios = $pdo->query(
         <button type="submit">Registrar</button>
     </form>
     <hr>
+
+    <!-- Tabla de datos -->
+
+    <h2>Usuarios Registrados</h2>
+
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha de nacimiento</th>
+            <th>Sexo</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+
+        <?php foreach($usuarios as $u): ?>
+        <tr>
+            <td><?= e($u['id_usuario']) ?></td>
+            <td><?= e($u['nombre']) ?></td>
+            <td><?= e($u['fecha_nacimiento']) ?></td>
+            <td><?= e($u['sexo']) ?></td>
+            <td><?= e($u['correo']) ?></td>
+            <td>
+                <button type="button">Modificar</button>
+                <button type="button">Eliminar</button>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+
+        <!-- Mensaje si aún no hay usuarios registrados -->
+        <?php if (!$usuarios): ?>
+            <tr><td colspan="6"> No hay usuarios registrados.</td></tr>
+        <?php endif; ?>
+    </table>
 </body>
 </html>
